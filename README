@@ -1,0 +1,5 @@
+Welcome to the x86_64 SwirlOS git repo or wherever you are.
+This project is using Limine Bootloader by the limine community and GNU Tools (binutils, gcc, etc)
+
+How to run:
+	'make run' - Recompiles the kernel and runs it via qemu-system-x86_64
