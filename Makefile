@@ -15,9 +15,16 @@ compile:
 	rm -rf ${BIN}
 	mkdir ${BIN}
 	${CC} -c ${I_FLG} ${SRC}/kernel.c -o ${BIN}/kernel.o ${C_FLG}
-	${CC} -c ${I_FLG} ${SRC}/framebuffer.c -o ${BIN}/framebuffer.o ${C_FLG}
+
+	${CC} -c ${I_FLG} ${SRC}/drivers/framebuffer.c -o ${BIN}/framebuffer.o ${C_FLG}
+	${CC} -c ${I_FLG} ${SRC}/arch/x86_64/gdt.c -o ${BIN}/gdt_c.o ${C_FLG}
+
+	${NASM} -felf64 ${SRC}/arch/x86_64/gdt.s -o ${BIN}/gdt_s.o 
+
 link: compile
-	${CC} -T ${SRC}/linker.ld ${BIN}/kernel.o ${BIN}/framebuffer.o -o ${BIN}/kernel.bin ${L_FLG}
+	${CC} -T ${SRC}/linker.ld \
+		${BIN}/kernel.o ${BIN}/framebuffer.o ${BIN}/gdt_c.o ${BIN}/gdt_s.o \
+		-o ${BIN}/kernel.bin ${L_FLG}
 
 iso: link 
 	cp ${BIN}/kernel.bin ${ISO_DIR}/bin/kernel.bin

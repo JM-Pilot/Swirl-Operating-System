@@ -3,22 +3,22 @@ ENTRY(kernel_main)
 SECTIONS
 {
 	. = 0xFFFFFFFF80000000;
-	.text (READONLY) :
+	.text (READONLY) : ALIGN(4)
 	{
 		*(.text)
 	}
 
-	.data (READONLY) :
+	.data (READONLY) : ALIGN(4)
 	{
 		*(.data)
 	}
 
-	.rodata (READONLY) :
+	.rodata (READONLY) : ALIGN(4)
 	{
 		*(.rodata)
 	}
 
-	.bss (READONLY) :
+	.bss (READONLY) : ALIGN(4)
 	{
 		*(COMMON)
 		*(.bss)
