@@ -3,3 +3,4 @@ This project is using Limine Bootloader by the limine community and GNU Tools (b
 
 How to run:
 	'make run' - Recompiles the kernel and runs it via qemu-system-x86_64
+	'make run-w-rebuild' - Does not recompile the kernel, WARNING IF THERE IS NO ISO THE RUN WILL FAIL:

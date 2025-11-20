@@ -33,3 +33,8 @@ run: iso
 		-m 2048 -no-reboot -no-shutdown \
 		-bios ${ISO_DIR}/EFI/OVMF.4m.fd \
 		-serial stdio
+run-w-rebuild:
+	qemu-system-x86_64 -cdrom ${BIN}/${IMG_NAME}.iso \
+		-m 2048 -no-reboot -no-shutdown \
+		-bios ${ISO_DIR}/EFI/OVMF.4m.fd \
+		-serial stdio
